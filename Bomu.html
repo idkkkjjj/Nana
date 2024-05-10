@@ -26,9 +26,56 @@
 </style>
 </head>
 <body>
+<audio id="audioPlayer" controls autoplay style="display: none;">
+  <source src="DevilsAdvocate.mp3" type="audio/mpeg">
+  <source src="Bordersz.mp3" type="audio/mpeg">
+  <source src="AllTheStars.mp3" type="audio/mpeg">
+  <source src="Dissolve.mp3" type="audio/mpeg">
+  <source src="Cologne.mp3" type="audio/mpeg">
+  <source src="Sunflower.mp3" type="audio/mpeg">
+  <source src="Dejavu.mp3" type="audio/mpeg">
+  <source src="Sometimes.mp3" type="audio/mpeg">
+  <source src="CryBaby.mp3" type="audio/mpeg">
+  <source src="FrankOcean.mp3" type="audio/mpeg">
+  <source src="IllSeeYouThereTomorrow.mp3" type="audio/mpeg">
+  <source src="SnapOutOfIt.mp3" type="audio/mpeg">
+  <source src="Thirsty.mp3" type="audio/mpeg">
+  Your browser does not support the audio tag.
+</audio>
+<script>
+function playRandomAudio() {
+  var audioFiles = [
+    "DevilsAdvocate.mp3",
+    "Bordersz.mp3",
+    "AllTheStars.mp3",
+    "Dissolve.mp3",
+    "Cologne.mp3",
+    "Sunflower.mp3",
+    "Dejavu.mp3",
+    "Sometimes.mp3",
+    "CryBaby.mp3",
+    "FrankOcean.mp3",
+    "IllSeeYouThereTomorrow.mp3",
+    "SnapOutOfIt.mp3",
+    "Thirsty.mp3"
+  ];
+  var randomIndex = Math.floor(Math.random() * audioFiles.length);
+  var audioPlayer = document.getElementById("audioPlayer");
+  audioPlayer.src = audioFiles[randomIndex];
+  audioPlayer.load();
+  audioPlayer.play();
+}
+
+document.addEventListener("click", function() {
+  playRandomAudio();
+});
+
+document.addEventListener("keypress", function() {
+  playRandomAudio();
+});
+</script>
 
 <div id="countdown"></div>
-
 <script>
 function updateCountdown() {
   var now = new Date();
