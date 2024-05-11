@@ -12,16 +12,49 @@
     color: pink;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    height: auto;
+    align-items: center; /* Center the content vertically and horizontally */
+    height: 100vh; /* Ensure full viewport height */
     margin: 0;
     font-family: Garamond, serif;
+    overflow: hidden; /* Hide overflow to prevent scrollbars */
   }
 
   #countdown {
     font-size: 24px;
     text-align: center;
-    margin-top: 150px;
+    position: absolute;
+    top: 100px;
+  }
+
+  .explosion {
+    animation: explode 0.5s infinite alternate;
+  }
+
+  .emoji {
+    position: absolute;
+    font-size: 3em; /* Increase emoji size */
+    animation: explodeEmoji 1s linear infinite;
+    transform: translate(-50%, -50%); /* Center the emojis */
+  }
+
+  @keyframes explode {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.5);
+    }
+  }
+
+  @keyframes explodeEmoji {
+    0% {
+      transform: translate(calc(-225px), calc(-400px)) scale(1); /* Start from top left corner */
+      opacity: 1;
+    }
+    100% {
+      transform: translate(calc(var(--x)), calc(var(--y))) scale(3);
+      opacity: 0;
+    }
   }
 
 </style>
@@ -43,6 +76,10 @@
   <source src="Thirsty.mp3" type="audio/mpeg">
   Your browser does not support the audio tag.
 </audio>
+
+<div id="countdown"></div>
+<div id="emojis"></div>
+
 <script>
 function playRandomAudio() {
   var audioFiles = [
@@ -74,10 +111,7 @@ document.addEventListener("click", function() {
 document.addEventListener("keypress", function() {
   playRandomAudio();
 });
-</script>
-<div id="countdown"></div>
 
-<script>
 var countDownDate = new Date("May 13, 2024 00:00:00").getTime();
 
 var x = setInterval(function() {
@@ -96,7 +130,18 @@ var x = setInterval(function() {
   
   if (distance < 0) {
     clearInterval(x);
-    document.getElementById("countdown").innerHTML = "Aeeeee, feliz niver:33🎉🎉";
+    document.getElementById("countdown").innerHTML = "Aeeeee, feliz niver :33";
+    document.getElementById("countdown").classList.add("explosion");
+    // Create emojis
+    var emojisContainer = document.getElementById("emojis");
+    for (var i = 0; i < 20; i++) {
+      var emoji = document.createElement("div");
+      emoji.textContent = "🎉";
+      emoji.classList.add("emoji");
+      emoji.style.setProperty("--x", Math.random() * window.innerWidth + "px");
+      emoji.style.setProperty("--y", Math.random() * window.innerHeight + "px");
+      emojisContainer.appendChild(emoji);
+    }
   }
 }, 1000);
 </script>
