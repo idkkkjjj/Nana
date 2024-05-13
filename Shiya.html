@@ -26,6 +26,34 @@
     top: 100px;
   }
 
+  #gift-button {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url('chuu.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+  }
+
+  #gif-container {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+
   .explosion {
     animation: explode 0.5s infinite alternate;
   }
@@ -34,7 +62,7 @@
     position: absolute;
     font-size: 3em; /* Increase emoji size */
     animation: explodeEmoji 1s linear infinite;
-    transform: translate(-50%, -50%); /* Center the emojis */
+    transform: translate(-50%, -50%);
   }
 
   @keyframes explode {
@@ -48,7 +76,7 @@
 
   @keyframes explodeEmoji {
     0% {
-      transform: translate(calc(-225px), calc(-400px)) scale(1); /* Start from top left corner */
+      transform: translate(calc(-225px), calc(-400px)) scale(1);
       opacity: 1;
     }
     100% {
@@ -79,6 +107,11 @@
 
 <div id="countdown"></div>
 <div id="emojis"></div>
+<button id="gift-button">Abrir o presente>:3</button>
+
+<div id="gif-container">
+  <img id="gift-gif" src="chuu.gif" alt="Gift" />
+</div>
 
 <script>
 function playRandomAudio() {
@@ -112,7 +145,7 @@ document.addEventListener("keypress", function() {
   playRandomAudio();
 });
 
-var countDownDate = new Date("May 13, 2024 00:00:00").getTime();
+var countDownDate = new Date("May 12, 2024 00:00:00").getTime();
 
 var x = setInterval(function() {
 
@@ -132,7 +165,6 @@ var x = setInterval(function() {
     clearInterval(x);
     document.getElementById("countdown").innerHTML = "Aeeeee, feliz niver :33";
     document.getElementById("countdown").classList.add("explosion");
-    // Create emojis
     var emojisContainer = document.getElementById("emojis");
     for (var i = 0; i < 20; i++) {
       var emoji = document.createElement("div");
@@ -142,9 +174,14 @@ var x = setInterval(function() {
       emoji.style.setProperty("--y", Math.random() * window.innerHeight + "px");
       emojisContainer.appendChild(emoji);
     }
+    document.getElementById("gift-button").style.display = "block";
   }
 }, 1000);
-</script>
 
+document.getElementById("gift-button").addEventListener("click", function() {
+  document.getElementById("gif-container").style.display = "block";
+  document.getElementById("gif-container").style.animation = "fade-in 1s ease";
+});
+</script>
 </body>
 </html>
