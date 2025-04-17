@@ -79,7 +79,7 @@ document.addEventListener("keypress", function() {
 <script>
 function updateCountdown() {
   var now = new Date();
-  var targetDate = new Date(now.getFullYear(), 4, 13); 
+  var targetDate = new Date(now.getFullYear('2025'), 4, 13); 
 
   if (now > targetDate) {
     targetDate.setFullYear(targetDate.getFullYear() + 1);
