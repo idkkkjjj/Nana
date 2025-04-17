@@ -28,20 +28,9 @@
 <body>
 <audio id="audioPlayer" controls autoplay style="display: none;">
   <source src="DevilsAdvocate.mp3" type="audio/mpeg">
-  <source src="Bordersz.mp3" type="audio/mpeg">
-  <source src="AllTheStars.mp3" type="audio/mpeg">
-  <source src="Dissolve.mp3" type="audio/mpeg">
-  <source src="Cologne.mp3" type="audio/mpeg">
-  <source src="Sunflower.mp3" type="audio/mpeg">
-  <source src="Dejavu.mp3" type="audio/mpeg">
-  <source src="Sometimes.mp3" type="audio/mpeg">
-  <source src="CryBaby.mp3" type="audio/mpeg">
-  <source src="FrankOcean.mp3" type="audio/mpeg">
-  <source src="IllSeeYouThereTomorrow.mp3" type="audio/mpeg">
-  <source src="SnapOutOfIt.mp3" type="audio/mpeg">
-  <source src="Thirsty.mp3" type="audio/mpeg">
-  Your browser does not support the audio tag.
+  <!-- Os <source> são desnecessários já que o JS escolhe a música, mas pode deixar se quiser -->
 </audio>
+
 <script>
 function playRandomAudio() {
   var audioFiles = [
@@ -66,21 +55,15 @@ function playRandomAudio() {
   audioPlayer.play();
 }
 
-document.addEventListener("click", function() {
-  playRandomAudio();
-});
-
-document.addEventListener("keypress", function() {
-  playRandomAudio();
-});
+document.addEventListener("click", playRandomAudio);
+document.addEventListener("keypress", playRandomAudio);
 </script>
 
 <div id="countdown"></div>
 <script>
 function updateCountdown() {
   var now = new Date();
-  var targetDate = new Date(now.getFullYear('2025'), 4, 13); 
-
+  var targetDate = new Date(now.getFullYear(), 4, 13); // 13 de maio
   if (now > targetDate) {
     targetDate.setFullYear(targetDate.getFullYear() + 1);
   }
@@ -92,17 +75,10 @@ function updateCountdown() {
   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  document.getElementById("countdown").innerHTML = "Nanoca nooboza: " + days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
-
-  if (distance <= 0) {
-    clearInterval(x);
-    updateCountdown();
-  }
+  document.getElementById("countdown").innerHTML = "Nanoca nooboza: " + days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 }
 
 updateCountdown();
-
 var x = setInterval(updateCountdown, 1000);
 </script>
 
